@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:method="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+<div class="limiter">
+    <div class="container-login100">
+
+        <div style="width: 100%;padding-right: 36px;">
+            <a href="/" style="float: right;">Home</a>
+        </div>
+
+        <div class="pricingTable">
+            <h2 class="pricingTable-title">All of the accessories list</h2>
+            <ul class="pricingTable-firstTable">
+                <th:block th:each="accessory: ${accessories}">
+                    <li class="pricingTable-firstTable_table">
+                        <h1 class="pricingTable-firstTable_table__header" th:text="${accessory.id}">...</h1>
+                        <h1 class="pricingTable-firstTable_table__header" th:text="${accessory.name}">...</h1>
+                        <h1 class="pricingTable-firstTable_table__header" th:text="${accessory.stock}">...</h1>
+                        <h1 class="pricingTable-firstTable_table__header" th:text="${accessory.price}">...</h1>
+                        <h1 class="pricingTable-firstTable_table__header" th:text="${accessory.category}">...</h1>
+                        <h1 class="pricingTable-firstTable_table__header" th:text="${accessory.description}">...</h1>
+                        <h1 class="pricingTable-firstTable_table__header" th:text="${accessory.username}">...</h1>
+<!--                       <form method="get" th:action="@{/accessory/delete/{id}(id=${accessory.id})}">-->
+<!--                        <div class="container-login100-form-btn">-->
+<!--                            <button class="login100-form-btn" type="submit">-->
+<!--                                Delete-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                       </form>-->
+                        <ul class="pricingTable-firstTable_table__options">
+
+                        </ul>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+99

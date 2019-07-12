@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Warehouse</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+<div class="limiter">
+    <div class="container-login100">
+
+        <div class="ttt">
+            <a href="/login">Log in</a>
+            <a href="/user-list">All Users</a>
+            <a href="/accessory-list">All Accessories</a>
+
+            <a href="/logout">Logout</a>
+        </div>
+
+        <div class="pricingTable">
+            <h2 class="pricingTable-title">All of the items list</h2>
+            <h3 class="pricingTable-subtitle">Item comes with a 1-week warranty</h3>
+
+            <div style="text-align: center;margin-bottom: 36px;">
+                <form class="inline-form" method="GET" action="/accessory/search">
+                    <div class="form-control" style="display: inline-block;">
+                        <label>Name</label>
+                        <input th:value="${n}" name="n">
+                    </div>
+
+                    <div class="form-control" style="display: inline-block;">
+                        <input type="submit" value="search">
+                    </div>
+                </form>
+            </div>
+
+            <ul class="pricingTable-firstTable">
+                <th:block th:each="accessory: ${accessories}">
+                    <li class="pricingTable-firstTable_table">
+                        <h1 class="pricingTable-firstTable_table__header" th:text="${accessory.name}">...</h1>
+                        <p class="pricingTable-firstTable_table__pricing">
+                            <span>$</span><span th:text="${accessory.price}">...</span><span>Week</span>
+                        </p>
+                        <ul class="pricingTable-firstTable_table__options">
+                            <li th:if="${username} == 'admin'">
+                                <span>User:</span>
+                                <span th:text="${accessory.username}">...</span>
+                            </li>
+                            <li>
+                                <span>Stock:</span>
+                                <span th:text="${accessory.stock}">...</span>
+                            </li>
+                            <li>
+                                <span>Category:</span>
+                                <span th:text="${accessory.category}">...</span>
+                            </li>
+                        </ul>
+                        <div class="pricingTable-firstTable_table__getstart">
+                            <a class="a-details" th:href="@{/single/{accessoryId}(accessoryId=${accessory.id})}">Details</a>
+                        </div>
+
+                        <div class="pricingTable-firstTable_table__getstart delete">
+                            <a class="a-details" th:href="@{/delete/{accessoryId}(accessoryId=${accessory.id})}">Remove</a>
+                        </div>
+                    </li>
+                </th:block>
+                <li class="pricingTable-firstTable_table">
+                    <div class="pricingTable-firstTable_table__getstart">
+                        <a class="a-details" href="/accessory/add">Add One</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

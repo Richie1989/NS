@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Warehouse</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+<div class="limiter">
+    <div class="container-login100">
+
+        <div style="width: 100%;padding-right: 36px;">
+            <a href="/logout" style="float: right;">Logout</a>
+            <span th:text="${username}" style="float: right;padding-right: 12px;">...</span>
+        </div>
+
+        <div class="pricingTable">
+            <h2 class="pricingTable-title">All of the items list</h2>
+            <h3 class="pricingTable-subtitle">Every item comes with a 1-week free trial.</h3>
+            <div style="text-align: center;margin-bottom: 36px;">
+
+            </div>
+            <ul class="pricingTable-firstTable">
+                <th:block th:each="accessory: ${accessories}" th:if="${#strings.toLowerCase(accessory.name)} == ${n}">
+                    <li class="pricingTable-firstTable_table">
+                        <h1 class="pricingTable-firstTable_table__header" th:text="${accessory.name}">...</h1>
+                        <p class="pricingTable-firstTable_table__pricing">
+                            <span>$</span><span th:text="${accessory.price}">...</span><span></span>
+                        </p>
+                        <ul class="pricingTable-firstTable_table__options">
+                            <li th:if="${holder} == 'admin'">
+                                <span>User:</span>
+                                <span th:text="${accessory.username}">...</span>
+                            </li>
+                            <li>
+                                <span>Stock:</span>
+                                <span th:text="${accessory.stock}">...</span>
+                            </li>
+                            <li>
+                                <span>Category:</span>
+                                <span th:text="${accessory.category}">...</span>
+                            </li>
+                        </ul>
+                        <div class="pricingTable-firstTable_table__getstart">
+                            <a class="a-details" th:href="@{/accessory/single/{accessoryId}(accessoryId=${accessory.id})}">Details</a>
+                        </div>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
